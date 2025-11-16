@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Wavex Program</title>
+
+<style>
+    body {
+        background-color: #000;
+        color: #4cc7ff;
+        font-family: Consolas, monospace;
+        font-size: 18px;
+        padding: 20px;
+        transition: background 0.5s;
+    }
+
+    .btn {
+        background-color: #111;
+        color: #4cc7ff;
+        border: 1px solid #4cc7ff;
+        padding: 10px 20px;
+        font-size: 16px;
+        cursor: pointer;
+        margin-right: 10px;
+        margin-bottom: 20px;
+    }
+
+    .btn:hover {
+        background-color: #0a0a0a;
+        border-color: #79d4ff;
+    }
+
+    #output {
+        white-space: pre;
+        margin-top: 20px;
+    }
+
+    .cube {
+        width: 80px;
+        height: 80px;
+        background: #4cc7ff;
+        margin-top: 20px;
+        animation: spin 3s infinite linear;
+    }
+
+    @keyframes spin {
+        from { transform: rotate(0deg); }
+        to { transform: rotate(360deg); }
+    }
+
+</style>
+
+</head>
+<body>
+
+<h2>Wavex – Lua Engine Simulation</h2>
+
+<button class="btn" onclick="runCube()">cube.lua</button>
+<button class="btn" onclick="runDelly()">DELLY.lua</button>
+<button class="btn" onclick="runSoft()">Soft.lua</button>
+
+<div id="output"></div>
+
+<script>
+function runCube() {
+    document.getElementById('output').textContent =
+`----- cube.lua -----
+print("Cube.lua started")
+-- Действие: создать вращающийся куб`;
+
+    let cube = document.createElement("div");
+    cube.className = "cube";
+    document.body.appendChild(cube);
+}
+
+function runDelly() {
+    document.getElementById('output').textContent =
+`----- DELLY.lua -----
+print("DELLY.lua module loaded")
+-- Действие: изменить фон и создать вспышку`;
+
+    document.body.style.background = "#001f33";
+    setTimeout(() => document.body.style.background = "#000", 400);
+}
+
+function runSoft() {
+    document.getElementById('output').textContent =
+`----- Soft.lua -----
+print("Soft.lua executed")
+-- Действие: создать эффект частиц`;
+
+    for (let i = 0; i < 40; i++) {
+        let p = document.createElement("div");
+        p.style.position = "absolute";
+        p.style.width = "6px";
+        p.style.height = "6px";
+        p.style.background = "#4cc7ff";
+        p.style.left = Math.random() * window.innerWidth + "px";
+        p.style.top = Math.random() * window.innerHeight + "px";
+        p.style.opacity = 1;
+        p.style.transition = "opacity 1.2s";
+        document.body.appendChild(p);
+
+        setTimeout(() => p.style.opacity = 0, 100);
+        setTimeout(() => p.remove(), 1500);
+    }
+}
+</script>
+
+</body>
+</html>
