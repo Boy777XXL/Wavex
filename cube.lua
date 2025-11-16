@@ -1,0 +1,1 @@
+print("Cube.lua started")
